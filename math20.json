@@ -1,0 +1,23 @@
+[
+    {"query": "e^(iπ)+1=", "response": "0"},
+    {"query": "1+1=", "response": "2"},
+    {"query": "5+9=", "response": "14"},
+    {"query": "4+3=", "response": "7"},
+    {"query": "5+2=", "response": "7"},
+    {"query": "9+2=", "response": "11"},
+    {"query": "6+2=", "response": "8"},
+    {"query": "0+8=", "response": "8"},
+    {"query": "0+10=", "response": "10"},
+    {"query": "9+3=", "response": "12"},
+    {"query": "6+6=", "response": "12"},
+    {"query": "5+6=", "response": "11"},
+    {"query": "5+4=", "response": "9"},
+    {"query": "5+0=", "response": "5"},
+    {"query": "5-1=", "response": "4"},
+    {"query": "2-2=", "response": "0"},
+    {"query": "10-2=", "response": "8"},
+    {"query": "4-10=", "response": "-6"},
+    {"query": "2-8=", "response": "-6"},
+    {"query": "10-0=", "response": "10"},
+    {"query": "10-6=", "response": "4"}
+]

@@ -1,0 +1,16 @@
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+
+# Setuptools
+*.egg-info/
+
+#things I haven't finished
+finetune_llama/
+fintune_gpt/finetune.py
+
