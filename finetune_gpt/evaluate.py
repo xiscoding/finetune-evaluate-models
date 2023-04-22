@@ -29,10 +29,10 @@ def create_completion(dataset):
         response = openai.Completion.create(
                 engine=ENGINE,
                 prompt=query,
-                max_tokens=3,
+                max_tokens=2,
                 n=1,
                 stop=None,
-                temperature=0.5
+                temperature=0.1
             )
 
         response_text = response['choices'][0]['text'].strip()
@@ -73,7 +73,7 @@ def create_chat_completion(dataset):
             stop=None,
             temperature=0.5
         )
-        response_text = response.choices[0].message.content
+        response_text = response.choices[0].message.content.strip()
         print(response_text)
         print(f'Response: {response_text}')
         print(f'Expected Response: {expected_response}')
@@ -83,6 +83,7 @@ def create_chat_completion(dataset):
         total += 1
     accuracy = correct / total
     return accuracy
+
 def evaluate_LLM(dataset_path):
     with open(dataset_path, 'r') as f:
         dataset = json.load(f)
@@ -93,24 +94,6 @@ def evaluate_LLM(dataset_path):
         accuracy = create_completion(dataset)
         print(f'Accuracy: {accuracy:.2f}')
 
-dataset_path = '/home/xdoestech/Documents/Discrete_Math_project/train_models/math20.json'
-evaluate_LLM(dataset_path)
-
-        # if ENGINE.startswith("9"):
-        #     pass
-        #     # message= [
-        #     #                 {
-        #     #                     "role": 'assistant',
-        #     #                     "content": query
-        #     #                 }
-        #     #             ]
-                    
-        #     # #https://platform.openai.com/docs/api-reference/chat/create?lang=python
-        #     # response = openai.ChatCompletion.create(
-        #     #     model= ENGINE,
-        #     #     messages=message,
-        #     #     max_tokens=3,
-        #     #     n=1,
-        #     #     stop=None,
-        #     #     temperature=0.5
-        #     # )
+if __name__ == '__main__':
+    dataset_path = '/home/xdoestech/Documents/Discrete_Math_project/train_models/math20.json'
+    evaluate_LLM(dataset_path)
