@@ -19,23 +19,14 @@ text-davinci-003
 text-davinci-002
 code-davinci-002
 '''
+#Input: dataset .json file
+#Output: (# correct model answers ) / (total # questions asked)
 def create_completion(dataset):
     correct = 0
     total = 0
     for example in dataset:
-        query = example['query']
-        print(f'Query: {query}')
         expected_response = example['response']    
-        response = openai.Completion.create(
-                engine=ENGINE,
-                prompt=query,
-                max_tokens=2,
-                n=1,
-                stop=None,
-                temperature=0.1
-            )
-
-        response_text = response['choices'][0]['text'].strip()
+        response_text = completion(example)#response['choices'][0]['text'].strip()
         print(f'Response: {response_text}')
         print(f'Expected Response: {expected_response}')
         if response_text == expected_response:
@@ -50,40 +41,77 @@ def create_completion(dataset):
 gpt-3.5-turbo
 gpt-3.5-turbo-0301
 '''
+#Input: dataset .json file
+#Output: (# correct model answers ) / (total # questions asked)
 def create_chat_completion(dataset):
     correct = 0
     total = 0
     for example in dataset:
-        query = example['query']
-        print(f'Query: {query}')
         expected_response = example['response']
-        message= [
-                            {
-                                "role": 'assistant',
-                                "content": query
-                            }
-                        ]
-                    
-            #https://platform.openai.com/docs/api-reference/chat/create?lang=python
-        response = openai.ChatCompletion.create(
-            model= ENGINE,
-            messages=message,
-            max_tokens=2,
-            n=1,
-            stop=None,
-            temperature=0.5
-        )
-        response_text = response.choices[0].message.content.strip()
-        print(response_text)
+        response_text = chat_completion(example)
         print(f'Response: {response_text}')
         print(f'Expected Response: {expected_response}')
-        if response_text == expected_response:
-            correct += 1
-            print("Answer Correct")
+        correct += evaluate_answers(response_text, expected_response)
         total += 1
     accuracy = correct / total
     return accuracy
 
+#Input: single query form .json file
+#Output: stripped response from model
+def chat_completion(example):
+    query = example['query']
+    print(f'Query: {query}')
+    message= [
+                        {
+                            "role": 'assistant',
+                            "content": query
+                        }
+                    ]
+                
+        #https://platform.openai.com/docs/api-reference/chat/create?lang=python
+    response = openai.ChatCompletion.create(
+        model= ENGINE,
+        messages=message,
+        max_tokens=2,
+        n=1,
+        stop=None,
+        temperature=0.5
+    )
+    return response.choices[0].message.content.strip()
+
+#Input: single query form .json file
+#Output: stripped response from model
+def completion(example):
+    query = example['query']
+    print(f'Query: {query}')
+    message= [
+                        {
+                            "role": 'assistant',
+                            "content": query
+                        }
+                    ]
+                
+        #https://platform.openai.com/docs/api-reference/chat/create?lang=python
+    response = openai.ChatCompletion.create(
+        model= ENGINE,
+        messages=message,
+        max_tokens=2,
+        n=1,
+        stop=None,
+        temperature=0.5
+    )
+    return response.choices[0].message.content.strip()
+
+#Input: stripped model response, expected response from .json
+#Retun: 1 if match, 0 if no match
+def evaluate_answers(response_text, expected_response):
+        if response_text == expected_response:
+            print("Answer Correct")
+            return 1
+        return 0
+
+#Input: path to .json dataset
+#Output: none
 def evaluate_LLM(dataset_path):
     with open(dataset_path, 'r') as f:
         dataset = json.load(f)

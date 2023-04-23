@@ -1,0 +1,23 @@
+[
+    {
+        "query": "Make a truth table for the statement  (P∨Q)→(P∧Q).",
+        "response": "| P | Q | P∨Q | P∧Q | (P∨Q)→(P∧Q) |\n|---|---|-----|-----|-------------|\n| T | T | T   | T   | T           |\n| T | F | T   | F   | F           |\n| F | T | T   | F   | F           |\n| F | F | F   | F   | T           |\n"
+    },
+    {
+        "query": "Make a truth table for the statement  ¬P∧(Q→P)",
+        "response": "P Q ¬P∧(Q→P)\nT T F\nT F F\nF T F\nF F T\n"
+    },
+    {
+        "query": "Prove that P ∧ Q |= P ∨ Q.",
+        "response": "P Q P ∧ Q P ∨ Q\nT T T T\nT F F T\nF T F T\nF F F F\n"
+    },
+    {
+        "query": "Construct a truth table for the following compound proposition: (p ↔ q) → (p ∨ q)",
+        "response": "p q (p ↔ q) → (p ∨ q)\n0 0 1\n0 1 1\n1 0 1\n1 1 1\n"
+    },
+    {
+        "query": "Make a truth table for the propositional form (P∧ ∼ Q) ⇒ (P ∨ Q), and then find a simpler expression which is logically equivalent to it.",
+        "response": "(P∧ ∼ Q) ⇒ (P ∨ Q) ≡ ∼ (P∧ ∼ Q) ∨ (P ∨ Q)\n         ≡ (∼ P ∨ Q) ∨ (P ∨ Q)\n         ≡ ∼ P ∨ P ∨ Q ∨ Q\n         ≡ Q.\n"
+    }
+]
+

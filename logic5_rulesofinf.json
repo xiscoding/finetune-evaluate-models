@@ -1,0 +1,26 @@
+[
+    {
+        "query": "Premises: P ∧ Q, P → ¬(Q ∧ R), S → R . Prove: ¬S.",
+        "response": "1. P ∧ Q Premise\n2. P Decomposing a conjunction (1)\n3. Q Decomposing a conjunction (1)\n4. P → ¬(Q ∧ R) Premise\n5. ¬(Q ∧ R) Modus ponens (3,4)\n6. ¬Q ∨ ¬R DeMorgan (5)\n7. ¬R Disjunctive syllogism (3,6)\n8. S → R Premise\n9. ¬S Modus tollens (7,8)"
+    },
+    {
+        "query": "Premises: ¬(A ∨ B) → C, ¬A, ¬C . Prove: B.",
+        "response": "1. ¬(A ∨ B) → C Premise\n2. ¬C Premise\n3. A ∨ B Modus tollens (1,2)\n4. ¬A Premise\n5. B Disjunctive syllogism (3,4)"
+    },
+    {
+        "query": "Promises: p → q, q → r, ¬r ∴ ¬p. Prove: ¬p",
+        "response": "1. q → r Hypothesis\n2. p → q Hypothesis\n3. p → r Hypothetical syllogism, 1, 2\n4. ¬r Hypothesis\n5. ¬p Modus tollens, 3, 4"
+    },
+    {
+        "query": "Premises: p → (q ∧ r) ¬q ∴ ¬p. Prove: ¬p",
+        "response": "1. ¬q Hypothesis\n2. ¬q ∨ ¬r Addition, 1\n3. ¬(q ∧ r) De Morgan's law, 2\n4. p → (q ∧ r) Hypothesis\n5. ¬p Modus tollens, 3, 4"
+    },
+{
+    "query": "Prove that ¬A → (C ∧ D), A → B, ¬B entail C.",
+    "response": "1. ¬A [Modus Tollens: 2,3]\n2. C ∧ D [Modus Ponens: 1,4]\n3. C [Simplification: 2]"
+}
+
+
+
+
+]
